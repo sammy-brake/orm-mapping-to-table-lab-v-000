@@ -5,7 +5,7 @@ class Student
   def initialize (name, grade, id= nil)
     @name = name
     @grade = grade
-    
+
   end
 
   def self.create_table
@@ -32,6 +32,8 @@ class Student
     VALUES (?, ?)
     SQL
     DB[:conn].execute(sql, self.name, self.grade)
+
+     @id = DB[:conn].execute("SELECT last_insert_rowid() FROM songs")[0][0]
   end
 
 end
